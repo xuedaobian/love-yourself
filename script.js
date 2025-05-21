@@ -54,6 +54,7 @@ const progressText = document.getElementById('progressText');
 const summaryContainer = document.getElementById('summaryContainer');
 const summaryContent = document.getElementById('summaryContent');
 const resetBtn = document.getElementById('resetBtn');
+const copyBtn = document.getElementById('copyBtn'); // Add reference to the copy button
 
 // Initialize the application
 function init() {
@@ -80,6 +81,7 @@ function init() {
 
   // Summary buttons
   resetBtn.addEventListener('click', resetQuestions);
+  copyBtn.addEventListener('click', copyResultsToClipboard); // Add event listener for copy button
 
   // Check if we have answers already
   if (hasStoredAnswers()) {
@@ -389,6 +391,74 @@ function showSummary() {
   }
 }
 
+// Function to copy results to clipboard
+function copyResultsToClipboard() {
+  // Create formatted text with questions and answers
+  let resultsText = "爱自己的30个问题 - 我的回答\n\n";
+  
+  // Add each question and answer
+  questions.forEach((question, index) => {
+    if (answers[index].trim() === '') return; // Skip unanswered questions
+    
+    // Format: Question number. Question text: Answer
+    resultsText += `${index + 1}. ${question.replace(/^\d+\s+/, '')}: ${answers[index]}\n\n`;
+  });
+  
+  // Add summary statistics
+  const answeredCount = answers.filter(answer => answer.trim() !== '').length;
+  const yesCount = answers.filter(answer => answer === '是').length;
+  
+  if (answeredCount > 0) {
+    resultsText += `总结: 共回答了 ${answeredCount} 个问题，其中 ${yesCount} 个"是"和 ${answeredCount - yesCount} 个"否"。\n`;
+  }
+  
+  // Use clipboard API to copy text
+  navigator.clipboard.writeText(resultsText)
+    .then(() => {
+      // Show success message
+      const copyMsg = document.createElement('div');
+      copyMsg.textContent = '已复制到剪贴板！';
+      copyMsg.style.position = 'fixed';
+      copyMsg.style.top = '20px';
+      copyMsg.style.left = '50%';
+      copyMsg.style.transform = 'translateX(-50%)';
+      copyMsg.style.backgroundColor = '#4CAF50';
+      copyMsg.style.color = 'white';
+      copyMsg.style.padding = '10px 20px';
+      copyMsg.style.borderRadius = '4px';
+      copyMsg.style.zIndex = '1000';
+      
+      document.body.appendChild(copyMsg);
+      
+      // Remove message after 2 seconds
+      setTimeout(() => {
+        document.body.removeChild(copyMsg);
+      }, 2000);
+    })
+    .catch(err => {
+      // Show error message if copying fails
+      alert('复制失败，请手动复制: ' + err);
+      
+      // Create a fallback textarea for manual copying
+      const fallbackArea = document.createElement('textarea');
+      fallbackArea.value = resultsText;
+      fallbackArea.style.position = 'fixed';
+      fallbackArea.style.top = '0';
+      fallbackArea.style.left = '0';
+      fallbackArea.style.width = '100%';
+      fallbackArea.style.height = '100%';
+      fallbackArea.style.zIndex = '1001';
+      
+      document.body.appendChild(fallbackArea);
+      fallbackArea.focus();
+      fallbackArea.select();
+      
+      // Remove the textarea after user interaction
+      fallbackArea.addEventListener('blur', () => {
+        document.body.removeChild(fallbackArea);
+      });
+    });
+}
 
 // Reset all questions and answers
 function resetQuestions() {

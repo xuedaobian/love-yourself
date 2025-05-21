@@ -279,8 +279,16 @@ textarea.answer-input:focus {
 
 .summary-actions {
   display: flex;
-  justify-content: space-around;
+  gap: 15px;
+  justify-content: center;
   margin-top: 30px;
+}
+
+/* For mobile layout */
+@media (max-width: 600px) {
+  .summary-actions {
+    flex-direction: column;
+  }
 }
 
 footer {
