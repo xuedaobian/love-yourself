@@ -154,9 +154,22 @@ function showQuestion(index) {
   yesInput.name = `answer-${index}`;
   yesInput.value = '是';
   yesInput.checked = answers[index] === '是';
+  // Add event listener to automatically proceed to next question
   yesInput.addEventListener('change', () => {
     if (yesInput.checked) {
       answers[index] = '是';
+      saveAnswersToStorage();
+      // Short delay before moving to next question for better UX
+      setTimeout(() => {
+        // Only advance if not on the last question
+        if (currentQuestionIndex < questions.length - 1) {
+          currentQuestionIndex++;
+          showQuestion(currentQuestionIndex);
+        } else {
+          // If on the last question, show summary
+          showSummary();
+        }
+      }, 300);
     }
   });
 
@@ -177,9 +190,22 @@ function showQuestion(index) {
   noInput.name = `answer-${index}`;
   noInput.value = '否';
   noInput.checked = answers[index] === '否';
+  // Add event listener to automatically proceed to next question
   noInput.addEventListener('change', () => {
     if (noInput.checked) {
       answers[index] = '否';
+      saveAnswersToStorage();
+      // Short delay before moving to next question for better UX
+      setTimeout(() => {
+        // Only advance if not on the last question
+        if (currentQuestionIndex < questions.length - 1) {
+          currentQuestionIndex++;
+          showQuestion(currentQuestionIndex);
+        } else {
+          // If on the last question, show summary
+          showSummary();
+        }
+      }, 300);
     }
   });
 
