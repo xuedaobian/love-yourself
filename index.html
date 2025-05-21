@@ -1,54 +1,56 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>爱自己 - 30个自我探索问题</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱自己 - 30个自我探索问题</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
 <body>
-    <div class="container">
-        <header>
-            <h1>爱自己的30个问题</h1>
-            <p class="subtitle">花点时间，深入思考，更好地认识自己</p>
-        </header>
+  <div class="container">
+    <header>
+      <h1>爱自己的30个问题</h1>
+      <p class="subtitle">花点时间，深入思考，更好地认识自己</p>
+    </header>
 
-        <div class="progress-container">
-            <div class="progress-bar" id="progressBar"></div>
-            <div class="progress-text" id="progressText">0/30</div>
-        </div>
-
-        <main id="questionContainer">
-            <!-- Questions will be loaded here dynamically -->
-            <div class="start-screen" id="startScreen">
-                <h2>准备好开始自我探索了吗？</h2>
-                <p>这些问题将帮助你更深入地了解自己，评估你是否真正地爱自己。</p>
-                <p>所有回答都将保存在你的浏览器中，不会上传到任何服务器。</p>
-                <button id="startButton" class="btn btn-primary">开始探索</button>
-            </div>
-        </main>
-
-        <div class="navigation">
-            <button id="prevBtn" class="btn nav-btn"><i class="fas fa-arrow-left"></i> 上一题</button>
-            <button id="saveBtn" class="btn btn-secondary">保存进度</button>
-            <button id="nextBtn" class="btn nav-btn">下一题 <i class="fas fa-arrow-right"></i></button>
-        </div>
-
-        <div class="summary-container" id="summaryContainer">
-            <h2>你的自我探索总结</h2>
-            <div id="summaryContent"></div>
-            <div class="summary-actions">
-                <button id="viewBtn" class="btn btn-secondary"><i class="fas fa-eye"></i> 查看结果</button>
-                <button id="resetBtn" class="btn btn-danger"><i class="fas fa-trash"></i> 重新开始</button>
-            </div>
-        </div>
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+      <div class="progress-text" id="progressText">0/30</div>
     </div>
 
-    <footer>
-        <p>花点时间关注自己的内心，是爱自己的第一步。</p>
-    </footer>
+    <main id="questionContainer">
+      <!-- Questions will be loaded here dynamically -->
+      <div class="start-screen" id="startScreen">
+        <h2>准备好开始自我探索了吗？</h2>
+        <p>这些问题将帮助你更深入地了解自己，评估你是否真正地爱自己。</p>
+        <p>所有回答都将保存在你的浏览器中，不会上传到任何服务器。</p>
+        <button id="startButton" class="btn btn-primary">开始探索</button>
+      </div>
+    </main>
 
-    <script src="script.js"></script>
+    <div class="navigation">
+      <button id="prevBtn" class="btn nav-btn"><i class="fas fa-arrow-left"></i> 上一题</button>
+      <button id="saveBtn" class="btn btn-secondary">保存进度</button>
+      <button id="nextBtn" class="btn nav-btn">下一题 <i class="fas fa-arrow-right"></i></button>
+    </div>
+
+    <div class="summary-container" id="summaryContainer">
+      <h2>你的自我探索总结</h2>
+      <div id="summaryContent"></div>
+      <div class="summary-actions">
+        <button id="resetBtn" class="btn btn-danger"><i class="fas fa-trash"></i> 重新开始</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>花点时间关注自己的内心，是爱自己的第一步。</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
+
 </html>
